@@ -1,9 +1,14 @@
 import os
 from datetime import timedelta
 
+from dotenv import load_dotenv
+
+
+load_dotenv()
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-SECRET_KEY = 'hhz7l-ltdismtf@bzyz+rple7*s*w$jak%whj@(@u0eok^f9k4'
+SECRET_KEY = os.getenv('SECRET_KEY')
 
 DEBUG = True
 
@@ -17,8 +22,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'api',
     'posts',
+    'api',
     'djoser',
 ]
 
@@ -74,7 +79,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ru'
 
 TIME_ZONE = 'UTC'
 
@@ -95,7 +100,7 @@ REST_FRAMEWORK = {
 
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework_simplejwt.authentication.JWTAuthentication',
-    ]
+    ],
 }
 
 SIMPLE_JWT = {
