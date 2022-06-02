@@ -1,5 +1,6 @@
 from django.contrib.auth import get_user_model
 from django.db import models
+from django.core.exceptions import SuspiciousOperation
 
 User = get_user_model()
 
@@ -56,7 +57,7 @@ class Follow(models.Model):
 
     def save(self, *args, **kwargs):
         if self.user == self.following:
-            raise ValueError("Forbidden to subscribe yourself")
+            raise SuspiciousOperation('Нельзя подписаться на самого себя!')
         else:
             super().save(*args, **kwargs)
 
